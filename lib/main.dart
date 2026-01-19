@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'http_practice.dart';
+import 'http_practice/http_practice_view.dart';
 
 void main() {
   runApp(const MyApp());
