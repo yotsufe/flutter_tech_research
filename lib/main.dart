@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'http_practice.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -52,6 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HttpPracticePage()),
+                );
+              },
+              child: const Text('HTTP Connection練習'),
+            )
           ],
         ),
       ),
