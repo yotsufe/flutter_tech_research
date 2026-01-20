@@ -36,12 +36,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final buttonStyle = OutlinedButton.styleFrom(
-    minimumSize: const Size(double.infinity, 50),
-  );
-
   @override
   Widget build(BuildContext context) {
+    final buttonStyle = OutlinedButton.styleFrom(
+      minimumSize: const Size(double.infinity, 50),
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
