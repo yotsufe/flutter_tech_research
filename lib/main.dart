@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tech_research/riverpod_practice/riverpod_practice_page.dart';
 
 import 'http_practice/http_practice_page.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Practice'),
     );
   }
 }
@@ -30,14 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,12 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+
             const SizedBox(height: 20),
+
             OutlinedButton(
               onPressed: () {
                 Navigator.push(
@@ -63,14 +53,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               child: const Text('HTTP Connection練習'),
-            )
+            ),
+
+            const SizedBox(height: 20),
+
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RiverpodPracticePage()),
+                );
+              },
+              child: const Text('Riverpod練習'),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
