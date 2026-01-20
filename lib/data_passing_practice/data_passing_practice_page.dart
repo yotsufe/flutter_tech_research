@@ -13,13 +13,18 @@ class DataPassingPracticePage extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('値渡し')),
+      appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text('値渡し')
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
-            mainAxisAlignment: .center,
+            mainAxisAlignment: .start,
             children: [
+              const SizedBox(height: 20),
+
               OutlinedButton(
                 style: buttonStyle,
                 onPressed: () {

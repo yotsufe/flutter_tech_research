@@ -11,7 +11,10 @@ class RiverpodPracticePage extends ConsumerWidget {
     final notifier = ref.read(riverpodPracticeProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Riverpod')),
+      appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text('Riverpod')
+      ),
       body: Column(
         children: [
           Expanded(

@@ -51,9 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
-            mainAxisAlignment: .center,
+            mainAxisAlignment: .start,
             children: [
-
               const SizedBox(height: 20),
 
               OutlinedButton(

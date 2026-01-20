@@ -10,7 +10,10 @@ class HttpPracticePage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => HttpPracticeViewModel(),
       child: Scaffold(
-        appBar: AppBar(title: const Text('HTTP通信_Provider')),
+        appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: const Text('HTTP通信_Provider')
+        ),
         body: Consumer<HttpPracticeViewModel>(
           builder: (context, viewModel, child) {
             return Column(
