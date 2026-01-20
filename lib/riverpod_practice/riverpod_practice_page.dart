@@ -1,53 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tech_research/http_practice/http_practice_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'riverpod_practice_view_model.dart';
 
-class RiverpodPracticePage extends StatelessWidget {
+class RiverpodPracticePage extends ConsumerWidget {
   const RiverpodPracticePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => HttpPracticeViewModel(),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Riverpod')),
-        body: Consumer<HttpPracticeViewModel>(
-          builder: (context, viewModel, child) {
-            return Column(
-              children: [
-                Expanded(
-                  child: _buildBody(viewModel),
-                ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(riverpodPracticeProvider);
+    final notifier = ref.read(riverpodPracticeProvider.notifier);
 
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    onPressed: () {
-                      viewModel.fetchPosts();
-                    },
-                    child: const Text('10件取得する'),
-                  ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Riverpod')),
+      body: Column(
+        children: [
+          Expanded(
+            child: _buildBody(state),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 40),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+              onPressed: () {
+                notifier.fetchPosts();
+              },
+              child: const Text('10件取得する'),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildBody(HttpPracticeViewModel viewModel) {
-    if (viewModel.isLoading) {
+  Widget _buildBody(RiverpodPracticeState state) {
+    if (state.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (viewModel.errorMessage != null) {
+    if (state.errorMessage != null) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +51,7 @@ class RiverpodPracticePage extends StatelessWidget {
             const Icon(Icons.error, color: Colors.red, size: 50),
             const SizedBox(height: 10),
             Text(
-              viewModel.errorMessage!,
+              state.errorMessage!,
               style: const TextStyle(color: Colors.red),
               textAlign: TextAlign.center,
             ),
@@ -64,17 +60,17 @@ class RiverpodPracticePage extends StatelessWidget {
       );
     }
 
-    if (viewModel.titles.isEmpty) {
+    if (state.titles.isEmpty) {
       return const Center(child: Text('データを取得してください'));
     }
 
     return ListView.builder(
-      itemCount: viewModel.titles.length,
+      itemCount: state.titles.length,
       itemBuilder: (context, index) {
         return Card(
           child: ListTile(
             leading: CircleAvatar(child: Text('${index + 1}')),
-            title: Text(viewModel.titles[index]),
+            title: Text(state.titles[index]),
           ),
         );
       },

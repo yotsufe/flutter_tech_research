@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tech_research/riverpod_practice/riverpod_practice_page.dart';
-
 import 'http_practice/http_practice_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      const ProviderScope(
+        child: MyApp(),
+      ),
+  );
 }
 
 class MyApp extends StatelessWidget {
